@@ -23,9 +23,8 @@ want a Beacon both in the conference room and at the coffee
 machine.
 
 
-~~~~~~~~~~~~
 Architecture
-~~~~~~~~~~~~
+============
 
 
 ::
@@ -53,7 +52,7 @@ Controlling system
 
 
 Background
-~~~~~~~~~~
+----------
 
 The BI-Beacon architecture is fairly simple, however might need
 some explanation anyway since it is not the simplest of possible
@@ -65,7 +64,7 @@ way from there.
 
 
 Idea 1: direct cable connections
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If we want to control devices in our offices, the simplest possible
 idea would be to connect them directly to our computers.
@@ -81,7 +80,7 @@ the Beacon need to be on that PC.
 
 
 Idea 2: dynamic IP addresses
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The next natural step after direct connection to a PC would be
 over the local network - be it WiFi or an ethernet cable,
@@ -113,7 +112,7 @@ controlling it from the cloud!
 
 
 Idea 3: IoT to the rescue!
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 So, as odd as it sounds, it is actually easier to make the device
 an internet-global device instead of a local (direct cable, or 
