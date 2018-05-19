@@ -92,8 +92,8 @@ Well, the reason is corporate IT networks; it is a mess in general!
 
 Getting a dynamic IP by connecting a device to the network is one
 thing, DHCP is common enough today that it can be generally relied
-upon, however, what then? If you want to communicate to the (local)
-device not connected to the (local) network, you would need it's
+upon, however, what then? If you want to communicate to a (local)
+device connected to the (local) network, you would need it's
 dynamic IP address.
 
 At home, you could just login to your router (at least if your tech
