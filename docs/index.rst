@@ -10,9 +10,7 @@ BI-Beacon documentation
   :maxdepth:3
   :caption:Contents:
 
- overview
- api
- architecture
+  api
 
 
 Indices and tables
