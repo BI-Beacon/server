@@ -7,4 +7,4 @@ This is the official BI-Beacon server.
 
 It also includes the BI-Beacon API, code examples and architecture documentation.
 
-Generated documentation available here: [https://bi-beacon.readthedocs.io/en/latest/]
+Generated documentation available here: [https://bi-beacon.readthedocs.io/en/latest/](bi-beacon.readthedocs.io)
