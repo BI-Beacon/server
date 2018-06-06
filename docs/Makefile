@@ -13,7 +13,7 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 setup:	Pipfile
-	pipenv install
+	pipenv --three install
 
 clean:
 	rm -rf _build *~ 2>/dev/null
