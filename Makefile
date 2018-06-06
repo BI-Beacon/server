@@ -3,8 +3,7 @@ SUBDIRS := docs
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
-	which pipenv || pip install pipenv
-	pipenv run $(MAKE) -C $@ $(MAKECMDGOALS)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run $(MAKE) -C $@ $(MAKECMDGOALS)
 
 clean:
 	rm -f *~
