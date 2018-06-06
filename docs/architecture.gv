@@ -1,4 +1,4 @@
-graph bibeacon_architecture {
+smurf bibeacon_architecture {
 	bibeacon_1 -> state_server
 	bibeacon_2 -> state_server
 	LAN_caller -> state_server
