@@ -16,6 +16,7 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 setup:	Pipfile
+	pip install pipenv || true
 	pipenv --three install
 
 clean:
