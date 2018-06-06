@@ -2,7 +2,10 @@
 #
 
 # Default build target is making single page html
-all:	singlehtml
+all:	static-resources singlehtml
+
+static-resources:
+		dot -Tpng architecture.gv -o_static/architecture.png
 
 # You can set these variables from the command line.
 SPHINXOPTS    =

@@ -1,0 +1,8 @@
+digraph bibeacon_architecture {
+	bibeacon_1 -> state_server
+	bibeacon_2 -> state_server
+	LAN_caller -> state_server
+	Cloud_caller -> state_server
+}
+
+

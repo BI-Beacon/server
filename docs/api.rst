@@ -25,20 +25,8 @@ the coffee machine.
 Architecture
 ============
 
-
-::
-
-:                      ##############                          ##########################
-:      https GET   +-->#State Server#<=====================----#Cloud controlling system#
-:       polling--> |   ##############                      |   ##########################
-:                  |           ^                           |
-:    Internet      |           |                           | <---- https POST requests
-:  -  -  -  -  -  -| -  -  -  -| -  -  -  -  -  -  -  -  - |-  -  -  -  -  -  -
-:      LAN         |           |                           |
-:           #############   #############          ########################
-:           #BI-Beacon 1    #BI-Beacon 2#          #LAN controlling system#
-:           #############   #############          ########################
-
+.. image:: _static/architecture.png
+    :width: 50%
 
 BI-Beacon 1 and 2
     This is either physical or virtual BI-Beacon devices, showing some state of something interesting to your business.
