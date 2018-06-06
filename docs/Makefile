@@ -5,7 +5,7 @@
 all:	static-resources singlehtml
 
 static-resources:
-		dot -Tpng architecture.gv -o_static/architecture.png
+		test -z "`dot -Tpng architecture.gv -o_static/architecture.png 2>&1`"
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
