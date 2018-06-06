@@ -3,7 +3,7 @@ SUBDIRS := docs
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
-	pipenv run $(MAKE) -C $@ $(MAKECMDGOALS)
+	pipenv run -- $(MAKE) -C $@ $(MAKECMDGOALS)
 
 clean:
 	rm -f *~
