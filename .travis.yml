@@ -9,7 +9,7 @@ env:
      - PIPENV_NOSPIN=1
     
 install:
-   - apt-get install graphviz
+   - sudo apt-get install -y graphviz
    - pip install pipenv
    - make setup
 
