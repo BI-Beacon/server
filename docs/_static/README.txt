@@ -1,0 +1,1 @@
+(this folder will contain images and other static resource)
