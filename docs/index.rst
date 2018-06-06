@@ -7,8 +7,8 @@ BI-Beacon documentation
 =======================
 
 .. toctree::
-  :maxdepth:3
-  :caption:Contents:
+   :maxdepth:3
+   :caption:Contents:
 
   api
 
