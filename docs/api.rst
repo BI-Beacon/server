@@ -3,6 +3,8 @@
 BI-Beacon Overview
 ==================
 
+.. image:: https://api.travis-ci.org/objarni/leanmodel.svg?branch=master
+
 BI-Beacons use a RESTful API.
 
 There is only one end-point: ``/<systemid>``.
