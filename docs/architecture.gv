@@ -1,4 +1,11 @@
 digraph bibeacon_architecture {
+
+	bibeacon_1 [ label="BI-Beacon 1" ]
+	bibeacon_2 [ label="BI-Beacon 2" ]
+	LAN_caller [ label="LAN caller" ]
+	Cloud_caller [ label="Cloud caller" ]
+	state_server [ label="State server" ]
+
 	bibeacon_1 -> state_server
 	bibeacon_2 -> state_server
 	LAN_caller -> state_server
