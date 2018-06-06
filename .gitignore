@@ -104,7 +104,9 @@ venv.bak/
 .mypy_cache/
 
 # pipenv
-Pipfile
-docs/Pipfile.lock
-docs/Pipfile
+Pipfile.lock
+/Pipfile
 
+*~
+\#*#
+.\#*
