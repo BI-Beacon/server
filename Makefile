@@ -3,6 +3,7 @@ SUBDIRS := docs
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
+	which pipenv || pip install pipenv
 	pipenv run $(MAKE) -C $@ $(MAKECMDGOALS)
 
 clean:
