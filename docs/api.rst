@@ -26,7 +26,7 @@ Architecture
 ============
 
 .. image:: _static/architecture.png
-    :width: 50%
+    :width: 90%
 
 BI-Beacon 1 and 2
     This is either physical or virtual BI-Beacon devices, showing some state of something interesting to your business.
@@ -184,6 +184,8 @@ Change state
 
       **period:** length of the pulse in milliseconds (optional, format integer)
     }
+
+
 
 :beacon-server
     This is the hostname of the state server.
