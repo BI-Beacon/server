@@ -16,7 +16,7 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 setup:	Pipfile
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv --three install
+	pipenv --three install
 
 clean:
 	rm -rf _build *~ 2>/dev/null

@@ -3,7 +3,7 @@ SUBDIRS := docs
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
-	PIPENV_NOSPIN=1 PIPENV_IGNORE_VIRTUALENVS=1 pipenv run $(MAKE) -C $@ $(MAKECMDGOALS)
+	pipenv run $(MAKE) -C $@ $(MAKECMDGOALS)
 
 clean:
 	rm -f *~
