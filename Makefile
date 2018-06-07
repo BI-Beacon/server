@@ -1,5 +1,5 @@
 TOPTARGETS := all clean setup
-SUBDIRS := docs
+SUBDIRS := 
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
