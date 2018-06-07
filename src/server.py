@@ -1,4 +1,5 @@
 import sys
+import json
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -12,7 +13,7 @@ CORS(flask_app)
                  methods=["POST", "GET"],
                  strict_slashes=False)
 def v1api(lampid):
-	# TODO: GET
+    # TODO: GET
     v1api = V1API(post_packet)
     (json_obj, status) = v1api.handle(id=lampid, formdata=request.form)
     return json.dumps(json_obj), status
