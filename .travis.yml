@@ -13,7 +13,6 @@ addons:
 
 install:
   - pip install pipenv
-  - make setup
 
 script:
   - make

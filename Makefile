@@ -1,5 +1,5 @@
 TOPTARGETS := all clean setup
-SUBDIRS := 
+SUBDIRS := src
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
