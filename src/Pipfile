@@ -6,6 +6,7 @@ name = "pypi"
 [dev-packages]
 coverage = "*"
 pytest-cov = "*"
+pylint = "*"
 
 [packages]
 Flask = ">=1.0.2"
