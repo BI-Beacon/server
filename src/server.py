@@ -4,6 +4,8 @@ import json
 from flask import Flask, request
 from flask_cors import CORS
 
+from v1api import V1API
+
 
 flask_app = Flask(__name__)
 CORS(flask_app)

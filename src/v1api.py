@@ -1,23 +1,17 @@
 # coding: utf-8
 import re
 import struct
-import logging
-
-log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
 
 
+COLOR = 'color'
+PERIOD = 'period'
+INT_RE = re.compile('^[0-9]{0,10}$')
 ID_RE = re.compile('^[-_0-9a-zA-Z]{1,80}$')
 assert ID_RE.match('a')
 assert ID_RE.match('123')
 assert ID_RE.match('1292-ABCdbf')
 assert ID_RE.match('__')
 assert not ID_RE.match('##')
-
-INT_RE = re.compile('^[0-9]{0,10}$')
-
-COLOR = 'color'
-PERIOD = 'period'
 
 
 def parse_color(s):
@@ -91,7 +85,6 @@ class V1API(object):
 
         packet = tuple(list(color) + [hz]) if hz else color
 
-        log.debug("Posting packet %s to %s" % (packet, id))
         self.post_packet(id, tuple(packet))
 
         return success("'%s' updated" % id)
