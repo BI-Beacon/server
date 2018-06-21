@@ -2,25 +2,6 @@ import unittest
 from v1api import V1API, parse_color
 
 
-class TestColorParse(unittest.TestCase):
-
-    def test_black_is_correct(self):
-        self.assertEqual((0, 0, 0), parse_color('#000000'))
-
-    def test_white_is_correct(self):
-        self.assertEqual((255, 255, 255), parse_color('#FFFFFF'))
-
-    def test_green_is_correct(self):
-        self.assertEqual((0, 255, 0), parse_color('#00ff00'))
-
-    def test_initial_hash_is_optional(self):
-        self.assertEqual((0, 255, 0), parse_color('00ff00'))
-
-    def test_invalid_throws(self):
-        self.assertRaises(ValueError, parse_color, '#000')
-        self.assertRaises(ValueError, parse_color, '#0ff00o')
-
-
 class TestV1API(unittest.TestCase):
 
     def test_bad_formdata(self):
@@ -136,6 +117,7 @@ class TestV1API(unittest.TestCase):
         self.assertEqual("'lamp4' updated", json['message'])
         self.assertEqual('lamp4', sent[0])
         self.assertEqual((255, 0, 255), sent[1])
+
 
 if __name__ == '__main__':
     unittest.main()

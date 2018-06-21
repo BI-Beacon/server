@@ -7,11 +7,11 @@ from flask_cors import CORS
 from v1api import V1API
 
 
-flask_app = Flask(__name__)
-CORS(flask_app)
+application = Flask(__name__)
+CORS(application)
 
 
-@flask_app.route('/v1/<lampid>',
+@application.route('/v1/<lampid>',
                  methods=["POST", "GET"],
                  strict_slashes=False)
 def v1api(lampid):
@@ -27,11 +27,11 @@ def run():
         return
     apiport = int(sys.argv[1])
     DEBUG = True
-    flask_app.run(host='0.0.0.0',
+    application.run(host='0.0.0.0',
                   port=apiport,
                   debug=DEBUG,
                   threaded=True)
 
 
 if __name__ == '__main__':
-    run()
+    application.run()
