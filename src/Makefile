@@ -17,4 +17,4 @@ run:
 
 tests:
 	go get github.com/golang/lint/golint
-	golint > golint-report.out
+	cd .. && golint src > golint-report.out
