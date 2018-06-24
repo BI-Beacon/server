@@ -1,10 +1,17 @@
-all:	setup tests
+GO_BUILD := GOOS=linux go build
+GO_DIST_BUILD := CGO_ENABLED=0 $(GO_BUILD) -a -installsuffix cgo -ldflags="-s -w"
 
-setup:
-	pipenv install --dev
+all:
+	$(GO_BUILD) -o main . 
 
-tests:
-	pipenv run pylint *.py -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > pylint-report.txt || true
-	pipenv run pytest --junitxml nosetests.xml .
-	pipenv run coverage run test_*.py
-	pipenv run coverage xml
+dist:
+	$(GO_DIST_BUILD) -o main . 
+	upx --brute main
+	docker build -t test .
+
+clean:
+	rm -rf *~ main main.[0-9]* main.upx main.exe
+
+run:
+	docker run -it --rm test
+
