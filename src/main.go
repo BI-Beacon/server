@@ -19,60 +19,64 @@ var stateRootPath = "./state"
 
 var validPath = regexp.MustCompile("^/v1/([a-zA-Z0-9]+)$")
 
+// FNV32a returns the hash of 'text' string, according to 32-bit FNV-1a.
 func FNV32a(text string) uint32 {
     algorithm := fnv.New32a()
     algorithm.Write([]byte(text))
     return algorithm.Sum32()
 }
 
-func getStateCacheFilename(beaconId string ) string {
-	return fmt.Sprintf( "%s/%03X/%s", stateRootPath, FNV32a(beaconId)&0x3FF, beaconId )
+func getStateCacheFilename(beaconID string ) string {
+	return fmt.Sprintf( "%s/%03X/%s", stateRootPath, FNV32a(beaconID)&0x3FF, beaconID )
 }
 
-func saveState(beaconId string, color string ) error {
-	var filename = getStateCacheFilename(beaconId)
+func saveState(beaconID string, color string ) error {
+	var filename = getStateCacheFilename(beaconID)
 	os.MkdirAll( filepath.Dir( filename ), os.ModePerm )
 	return ioutil.WriteFile( filename, []byte(color), 0600)
 }
 
-func loadState(beaconId string) (string, error) {
-	body, err := ioutil.ReadFile(getStateCacheFilename(beaconId))
+func loadState(beaconID string) (string, error) {
+	body, err := ioutil.ReadFile(getStateCacheFilename(beaconID))
 	if err != nil {
 		return "", err
 	}
 	return string(body), nil
 }
 
+// HandleSetState handles HTTP requests for setting beacon state
 func HandleSetState(w http.ResponseWriter, r *http.Request) {
-	beaconId, err := getBeaconId(w, r)
+	beaconID, err := getBeaconID(w, r)
 	if err != nil {
 		return
 	}
 	log.Println( r )
-	err = saveState(beaconId,"red")
+	err = saveState(beaconID,"red")
 	if err != nil {
 		http.Error(w, "Internal server error", 500)
 		return
 	}
-	fmt.Fprintf( w, "{ message: '%s updated' }", beaconId );
+	fmt.Fprintf( w, "{ message: '%s updated' }", beaconID );
 	io.WriteString(w, "\n\nget state\n")
 }
 
+// HandleGetState handles HTTP requests for getting beacon state
 func HandleGetState(w http.ResponseWriter, r *http.Request) {
-	beaconId, err := getBeaconId(w, r)
+	beaconID, err := getBeaconID(w, r)
    if err != nil {
       return
    }
 	r.ParseForm()
 	log.Println(r.PostForm)
-	body, err := loadState(beaconId)
+	body, err := loadState(beaconID)
 	if ( err != nil ) {
 		http.NotFound(w, r)
 	}
 	io.WriteString(w, body)
 }
 
-func HandleApiRequest(w http.ResponseWriter, r *http.Request) {
+// HandleAPIRequest is the main function for handling API requests (both get and set)
+func HandleAPIRequest(w http.ResponseWriter, r *http.Request) {
 	if ( r.Method == "GET" ) {
 		HandleGetState(w, r)
 		return
@@ -85,11 +89,11 @@ func HandleApiRequest(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/v1/", HandleApiRequest)
+	http.HandleFunc("/v1/", HandleAPIRequest)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func getBeaconId(w http.ResponseWriter, r *http.Request) (string, error) {
+func getBeaconID(w http.ResponseWriter, r *http.Request) (string, error) {
 	m := validPath.FindStringSubmatch(r.URL.Path)
 	if m == nil {
 		http.NotFound(w, r)
