@@ -1,18 +1,10 @@
-language: python
-python:
-  - '3.5'
+language: go
+
 env:
-  global:
-    - PIPENV_VENV_IN_PROJECT=1
-    - PIPENV_IGNORE_VIRTUALENVS=1
-    - PIPENV_NOSPIN=1
 
 addons:
   sonarcloud:
     organization: "bi-beacon" # the key of the org you chose at step #3
-
-install:
-  - pip install pipenv
 
 script:
   - make
