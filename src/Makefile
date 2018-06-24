@@ -10,8 +10,10 @@ dist:
 	docker build -t test .
 
 clean:
-	rm -rf *~ main main.[0-9]* main.upx main.exe
+	rm -rf *~ main main.[0-9]* main.upx main.exe golint-report.out
 
 run:
 	docker run -it --rm test
 
+tests:
+	$(HOME)/go/bin/golint > golint-report.out

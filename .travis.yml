@@ -7,7 +7,8 @@ addons:
     organization: "bi-beacon" # the key of the org you chose at step #3
 
 script:
-  - make
+  - go get github.com/golang/lint/golint
+  - make tests
   - sonar-scanner
 
 before_install:

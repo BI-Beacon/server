@@ -1,4 +1,4 @@
-TOPTARGETS := all clean setup
+TOPTARGETS := all clean setup tests
 SUBDIRS := src
 
 $(TOPTARGETS): $(SUBDIRS)
