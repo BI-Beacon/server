@@ -16,4 +16,5 @@ run:
 	docker run -it --rm test
 
 tests:
-	$(HOME)/go/bin/golint > golint-report.out
+	go get github.com/golang/lint/golint
+	golint > golint-report.out
