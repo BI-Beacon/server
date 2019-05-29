@@ -1,11 +1,16 @@
-TOPTARGETS := all clean setup
-SUBDIRS := src
+.PHONE: env
 
-$(TOPTARGETS): $(SUBDIRS)
-$(SUBDIRS):
-	$(MAKE) -C $@ $(MAKECMDGOALS)
+env/bin/activate: 
+	python3 -m venv env
+	( . env/bin/activate && pip install -r requirements.txt )
+
+devenv: env/bin/activate
 
 clean:
-	rm -f *~
+	rm -rf env
 
-.PHONY: $(TOPTARGETS) $(SUBDIRS)
+run: env/bin/activate
+	( . env/bin/activate && python src/server.py 80 )
+
+test: env/bin/activate
+	( . env/bin/activate && python tst/test_server.py )
