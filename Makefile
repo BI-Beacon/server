@@ -12,11 +12,11 @@ env: env/bin/activate
 	touch .devenv
 
 clean:
-	rm -rf env
-	rm -rf src/__pycache__
-	rm -rf tst/__pycache__
-	rm -rf .pytest_cache
-	rm .devenv
+	$(RM) -rf env
+	$(RM) -rf src/__pycache__
+	$(RM) -rf tst/__pycache__
+	$(RM) -rf .pytest_cache
+	$(RM) .devenv
 
 run: env
 	( . env/bin/activate && python src/server.py 80 )
