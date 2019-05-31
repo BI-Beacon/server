@@ -116,3 +116,5 @@ pylint-report.txt
 
 # local
 .devenv
+*.received.txt
+
