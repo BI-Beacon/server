@@ -2,9 +2,34 @@
 Given: (None,
  [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
 Got:
-{'returncode': 0, 'stderr': '', 'stdout': 'Usage: server.py <port>\n port: REST API requests will be available at this port.\n'}
+{ 'responses': [],
+  'returncode': 0,
+  'stderr': '',
+  'stdout': 'Usage: server.py <port>\n'
+            ' port: REST API requests will be available at '
+            'this port.\n'}
 
-Given: (9999,
+Given: (22906,
  [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
 Got:
-{'returncode': -15, 'stderr': ' * Running on http://0.0.0.0:9999/ (Press CTRL+C to quit)\n', 'stdout': 'BI-Beacon version 0.1 starting.\nUsing port: 9999\n * Serving Flask app "server" (lazy loading)\n * Environment: production\n   WARNING: This is a development server. Do not use it in a production deployment.\n   Use a production WSGI server instead.\n * Debug mode: off\n'}
+{ 'responses': [ <Response [404]>,
+                 <Response [404]>,
+                 <Response [404]>],
+  'returncode': -15,
+  'stderr': ' * Running on http://0.0.0.0:22906/ (Press '
+            'CTRL+C to quit)\n'
+            '127.0.0.1 - - [31/May/2019 19:23:11] "GET '
+            '/test HTTP/1.1" 404 -\n'
+            '127.0.0.1 - - [31/May/2019 19:23:11] "POST '
+            '/test HTTP/1.1" 404 -\n'
+            '127.0.0.1 - - [31/May/2019 19:23:11] "GET '
+            '/test HTTP/1.1" 404 -\n',
+  'stdout': 'BI-Beacon version 0.1 starting.\n'
+            'Using port: 22906\n'
+            ' * Serving Flask app "BI-Beacon Open Source '
+            'Server" (lazy loading)\n'
+            ' * Environment: production\n'
+            '   WARNING: This is a development server. Do '
+            'not use it in a production deployment.\n'
+            '   Use a production WSGI server instead.\n'
+            ' * Debug mode: off\n'}
