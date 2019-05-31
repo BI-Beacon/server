@@ -4,6 +4,10 @@ from flask import Flask
 
 
 VERSION = 0.1
+APPNAME = 'BI-Beacon Open Source Server'
+
+
+flask_app = Flask(APPNAME)
 
 
 def run():
@@ -18,7 +22,6 @@ def run():
     print("BI-Beacon version {version} starting.".format(version=VERSION))
     print("Using port: {port}".format(port=port))
 
-    flask_app = Flask(__name__)
     flask_app.run(host='0.0.0.0',
                   port=port,
                   debug=False,

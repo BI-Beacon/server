@@ -1,14 +1,16 @@
-import unittest
 from pprint import pformat
-import time
+import random
 import subprocess
+import time
+import unittest
 
 import approvaltests
 from approvaltests.combination_approvals import verify_all_combinations
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+import requests
 
-from context import server
 import reuseaddr_hack
+from context import server
 from io import StringIO
 
 
@@ -16,63 +18,51 @@ def get_process_output_for_inputs(port, request_list):
     cmdline = [
         'python', 'src/server.py'
     ]
-    if port:
-        cmdline.append(str(port))
-
-    stdout = open('/tmp/output.txt', 'w')
-    stderr = open('/tmp/error.txt', 'w')
-    process = subprocess.Popen(
-        cmdline,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-    time.sleep(0.4)
-    process.terminate()
-    sout, serr = process.communicate(timeout=2)
-
-    # process.wait(timeout=2)
-
-    # stdout.close()
-    # stderr.close()
-
-    # with open('/tmp/output.txt') as f:
-    #     sout = f.read()
-    # with open('/tmp/error.txt') as f:
-    #     serr = f.read()
-import unittest
-from pprint import pformat
-import time
-import subprocess
-
-import approvaltests
-from approvaltests.combination_approvals import verify_all_combinations
-from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
-
-from context import server
-import reuseaddr_hack
-from io import StringIO
-
-
-def get_process_output_for_inputs(port, request_list):
-    cmdline = [
-        'python', 'src/server.py'
-    ]
-    if port:
+    if port is not None:
         cmdline.append(str(port))
 
     process = subprocess.Popen(
         cmdline,
         stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
     )
-    time.sleep(0.4)
+    time.sleep(0.5)
+
+    # run requests
+    responses = []
+    if port is not None:
+        for req in request_list:
+            method, url = req[:2]
+            url = "http://localhost:{port}/{url}".format(url=url, port=port)
+            if method == 'GET':
+                responses.append(requests.get(url))
+            if method == 'POST':
+                responses.append(requests.post(url, req[2]))
+
     process.terminate()
-    sout, serr = process.communicate(timeout=2)
+    sout, _ = process.communicate(timeout=2)
+
+    def clean_line(line):
+        if '[' and ']' in line:
+            begin = line.partition('[')[0] + '['
+            end = ']' + line.partition(']')[2]
+            return begin + end
+        else:
+            return line
+
+    assert (
+        clean_line('127.0.0.1 - - [31/May/2019 19:48:12] "GET /test HTTP/1.1" 404 -')
+             ==
+                   '127.0.0.1 - - [] "GET /test HTTP/1.1" 404 -'
+    )
+
+    sout = sout.decode('ascii')
+    stdout = [clean_line(line) for line in sout.splitlines()]
 
     return {
-        'stdout': sout.decode('ascii'),
-        'stderr': serr.decode('ascii'),
-        'returncode': process.returncode
+        'stdout': stdout,
+        'returncode': process.returncode,
+        'responses': responses
     }
 
 
@@ -87,7 +77,8 @@ class TestServer(unittest.TestCase):
 
     def test_server_process(self):
         inputs = [
-            [None, 8890],
+            # [None, random.randrange(20000, 30000)],
+            [None, 8889],
             [
                 [
                     ('GET', 'test'),
@@ -109,50 +100,3 @@ def result_formatter(args, result):
         result=pformat(result, width=60, indent=2)
     )
 
-
-# if __name__ == '__main__':
-#     unittest.main()
-
-    return {
-        'stdout': sout,
-        'stderr': serr,
-        'returncode': process.returncode
-    }
-
-
-class TestServer(unittest.TestCase):
-
-    def setUp(self):
-        factory = GenericDiffReporterFactory()
-        import os
-        print(os.getcwd())
-        factory.load('tst/reporters.json')
-        self.reporter = factory.get('meld')
-
-    def test_server_process(self):
-        inputs = [
-            [None, 9999],
-            [
-                [
-                    ('GET', 'test'),
-                    ('POST', 'test', {'color': '#ff00ff'}),
-                    ('GET', 'test')
-                ]
-            ]
-        ]
-        verify_all_combinations(
-            get_process_output_for_inputs,
-            inputs,
-            reporter=self.reporter,
-            formatter=result_formatter)
-
-
-def result_formatter(args, result):
-    return '\nGiven: {args}\nGot:\n{result}\n'.format(
-        args=pformat(args),
-        result=pformat(result, width=6000, indent=2)
-    )
-
-
-# if __name__ == '__main__':
-#     unittest.main()
