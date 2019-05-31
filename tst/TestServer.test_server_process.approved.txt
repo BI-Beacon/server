@@ -1,0 +1,9 @@
+
+Given: (80, [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+Got:
+'hej'
+
+Given: (8888,
+ [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+Got:
+'hej'

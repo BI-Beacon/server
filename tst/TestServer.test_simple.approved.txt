@@ -1,0 +1,24 @@
+
+Given: (80,
+ '/tmp',
+ [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+Got:
+None
+
+Given: (80,
+ 'storage',
+ [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+Got:
+None
+
+Given: (8888,
+ '/tmp',
+ [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+Got:
+None
+
+Given: (8888,
+ 'storage',
+ [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+Got:
+None

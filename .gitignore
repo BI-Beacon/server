@@ -113,3 +113,6 @@ Pipfile.lock
 
 # pylint
 pylint-report.txt
+
+# local
+.devenv
