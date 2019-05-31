@@ -13,4 +13,4 @@ run: env
 	( . env/bin/activate && python src/server.py 80 )
 
 test: env
-	( . env/bin/activate && python tst/test_server.py )
+	( . env/bin/activate && NOSE_REDNOSE=1 nosetests tst )

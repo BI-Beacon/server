@@ -1,0 +1,3 @@
+Flask==1.0.3
+rednose==1.3.0
+approvaltests==0.2.4
