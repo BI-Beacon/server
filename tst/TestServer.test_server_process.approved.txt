@@ -1,9 +1,10 @@
 
-Given: (80, [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
-Got:
-'hej'
-
-Given: (8888,
+Given: (None,
  [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
 Got:
-'hej'
+{'returncode': 0, 'stderr': '', 'stdout': 'Usage: server.py <port>\n port: REST API requests will be available at this port.\n'}
+
+Given: (9999,
+ [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+Got:
+{'returncode': -15, 'stderr': ' * Running on http://0.0.0.0:9999/ (Press CTRL+C to quit)\n', 'stdout': 'BI-Beacon version 0.1 starting.\nUsing port: 9999\n * Serving Flask app "server" (lazy loading)\n * Environment: production\n   WARNING: This is a development server. Do not use it in a production deployment.\n   Use a production WSGI server instead.\n * Debug mode: off\n'}
