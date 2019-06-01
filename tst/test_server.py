@@ -10,7 +10,6 @@ from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffRep
 import requests
 
 import reuseaddr_hack
-from context import server
 from io import StringIO
 
 
@@ -24,9 +23,9 @@ def get_process_output_for_inputs(port, request_list):
     process = subprocess.Popen(
         cmdline,
         stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
+        stderr=subprocess.STDOUT
     )
-    time.sleep(0.5)
+    time.sleep(0.33)  # @refactor look for magic string instead of hard coded wait
 
     # run requests
     responses = []
@@ -40,7 +39,7 @@ def get_process_output_for_inputs(port, request_list):
                 responses.append(requests.post(url, req[2]))
 
     process.terminate()
-    sout, _ = process.communicate(timeout=2)
+    sout, _ = process.communicate(timeout=0.1)  # @refactor more robust method than timeout?
 
     def clean_line(line):
         if '[' and ']' in line:
@@ -58,6 +57,7 @@ def get_process_output_for_inputs(port, request_list):
 
     sout = sout.decode('ascii')
     stdout = [clean_line(line) for line in sout.splitlines()]
+    responses = [r.content.decode('ascii') for r in responses]
 
     return {
         'stdout': stdout,
@@ -77,8 +77,7 @@ class TestServer(unittest.TestCase):
 
     def test_server_process(self):
         inputs = [
-            # [None, random.randrange(20000, 30000)],
-            [None, 8889],
+            [None, 8989],
             [
                 [
                     ('GET', 'test'),

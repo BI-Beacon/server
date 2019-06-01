@@ -4,32 +4,30 @@ Given: (None,
 Got:
 { 'responses': [],
   'returncode': 0,
-  'stderr': '',
-  'stdout': 'Usage: server.py <port>\n'
-            ' port: REST API requests will be available at '
-            'this port.\n'}
+  'stdout': [ 'Usage: server.py <port>',
+              ' port: REST API requests will be available '
+              'at this port.']}
 
-Given: (22906,
+Given: (8989,
  [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
 Got:
-{ 'responses': [ <Response [404]>,
-                 <Response [404]>,
-                 <Response [404]>],
+{ 'responses': [ 'color 0 255 0\n',
+                 '{"message": "\'test\' updated"}',
+                 'color 255 0 255\n'],
   'returncode': -15,
-  'stderr': ' * Running on http://0.0.0.0:22906/ (Press '
-            'CTRL+C to quit)\n'
-            '127.0.0.1 - - [31/May/2019 19:23:11] "GET '
-            '/test HTTP/1.1" 404 -\n'
-            '127.0.0.1 - - [31/May/2019 19:23:11] "POST '
-            '/test HTTP/1.1" 404 -\n'
-            '127.0.0.1 - - [31/May/2019 19:23:11] "GET '
-            '/test HTTP/1.1" 404 -\n',
-  'stdout': 'BI-Beacon version 0.1 starting.\n'
-            'Using port: 22906\n'
-            ' * Serving Flask app "BI-Beacon Open Source '
-            'Server" (lazy loading)\n'
-            ' * Environment: production\n'
-            '   WARNING: This is a development server. Do '
-            'not use it in a production deployment.\n'
-            '   Use a production WSGI server instead.\n'
-            ' * Debug mode: off\n'}
+  'stdout': [ 'BI-Beacon version 0.1 starting.',
+              'Using port: 8989',
+              ' * Serving Flask app "BI-Beacon Open Source '
+              'Server" (lazy loading)',
+              ' * Environment: production',
+              '   WARNING: This is a development server. '
+              'Do not use it in a production deployment.',
+              '   Use a production WSGI server instead.',
+              ' * Debug mode: off',
+              ' * Running on http://0.0.0.0:8989/ (Press '
+              'CTRL+C to quit)',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 -',
+              '127.0.0.1 - - [] "POST /test HTTP/1.1" 200 '
+              '-',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 '
+              '-']}
