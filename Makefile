@@ -8,7 +8,6 @@ env: env/bin/activate
 
 .devenv: env
 	( . env/bin/activate && pip install -r requirements-dev.txt )
-	sudo apt-get install meld
 	touch .devenv
 
 clean:
