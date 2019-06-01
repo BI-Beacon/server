@@ -12,7 +12,7 @@ from flask import Flask, request
 from v1api import V1API
 
 
-VERSION = 0.1
+VERSION = 0.11
 APPNAME = 'BI-Beacon Open Source Server'
 
 state = {}

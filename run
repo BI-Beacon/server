@@ -1,0 +1,2 @@
+#/usr/bin/bash
+( . env/bin/activate && python src/server.py $1 )
