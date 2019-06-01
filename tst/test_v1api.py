@@ -28,7 +28,7 @@ class TestV1API(unittest.TestCase):
     def test_bad_formdata(self):
         def post_packet(lampid, packet):
             pass
-        (json, errcode) = V1API(post_packet).handle(id='lamp', formdata={})
+        (json, errcode) = V1API(post_packet).handle(ck='lamp', formdata={})
         self.assertEqual(400, errcode)
         self.assertEqual("Expected color data", json['message'])
 
@@ -36,9 +36,9 @@ class TestV1API(unittest.TestCase):
         def post_packet(lampid, packet):
             pass
         api = V1API(post_packet)
-        (json, errcode) = api.handle(id='%%%', formdata={'color': '#ff00ff'})
+        (json, errcode) = api.handle(ck='%%%', formdata={'color': '#ff00ff'})
         self.assertEqual(400, errcode)
-        self.assertEqual("Invalid id", json['message'])
+        self.assertEqual("Invalid channel key", json['message'])
 
     def test_green_color(self):
         sent = []
@@ -48,7 +48,7 @@ class TestV1API(unittest.TestCase):
             sent.append(packet)
 
         api = V1API(post_packet)
-        (json, errcode) = api.handle(id='lamp', formdata={'color': "#00ff00"})
+        (json, errcode) = api.handle(ck='lamp', formdata={'color': "#00ff00"})
         self.assertEqual(200, errcode)
         self.assertEqual("'lamp' updated", json['message'])
         self.assertEqual('lamp', sent[0])
@@ -62,7 +62,7 @@ class TestV1API(unittest.TestCase):
             sent.append(packet)
 
         api = V1API(post_packet)
-        (json, errcode) = api.handle(id='lamp2', formdata={'color': "#ff0000"})
+        (json, errcode) = api.handle(ck='lamp2', formdata={'color': "#ff0000"})
         self.assertEqual(200, errcode)
         self.assertEqual("'lamp2' updated", json['message'])
         self.assertEqual('lamp2', sent[0])
@@ -77,7 +77,7 @@ class TestV1API(unittest.TestCase):
 
         api = V1API(post_packet)
         data = {'color': "#ffff00", 'period': '1000'}
-        (json, errcode) = api.handle(id='lamp33', formdata=data)
+        (json, errcode) = api.handle(ck='lamp33', formdata=data)
         self.assertEqual(200, errcode)
         self.assertEqual("'lamp33' updated", json['message'])
         self.assertEqual('lamp33', sent[0])
@@ -86,7 +86,7 @@ class TestV1API(unittest.TestCase):
     def test_invalid_color_spec(self):
         def post_packet(lampid, packet):
             pass
-        (json, errcode) = V1API(post_packet).handle(id='lamp',
+        (json, errcode) = V1API(post_packet).handle(ck='lamp',
                                                     formdata={'color': "XYZ"})
         self.assertEqual(400, errcode)
         self.assertEqual("Invalid color", json['message'])
@@ -95,7 +95,7 @@ class TestV1API(unittest.TestCase):
         def post_packet(lampid, packet):
             pass
         data = {'color': "#00ff00", 'period': 'abc'}
-        (json, errcode) = V1API(post_packet).handle(id='lamp',
+        (json, errcode) = V1API(post_packet).handle(ck='lamp',
                                                     formdata=data)
         self.assertEqual(400, errcode)
         self.assertEqual("Invalid period", json['message'])
@@ -104,7 +104,7 @@ class TestV1API(unittest.TestCase):
         def post_packet(lampid, packet):
             pass
         data = {'color': "#00ff00", 'huh': '123'}
-        (json, errcode) = V1API(post_packet).handle(id='lamp',
+        (json, errcode) = V1API(post_packet).handle(ck='lamp',
                                                     formdata=data)
         self.assertEqual(400, errcode)
         self.assertEqual("Unknown parameter 'huh'", json['message'])
@@ -117,7 +117,7 @@ class TestV1API(unittest.TestCase):
             sent.append(packet)
 
         data = {'color': "#ff00ff", 'period': '0'}
-        (json, errcode) = V1API(post_packet).handle(id='lamp3',
+        (json, errcode) = V1API(post_packet).handle(ck='lamp3',
                                                     formdata=data)
         self.assertEqual(200, errcode)
         self.assertEqual("'lamp3' updated", json['message'])
@@ -132,7 +132,7 @@ class TestV1API(unittest.TestCase):
             sent.append(packet)
 
         data = {'color': "#ff00ff", 'period': ''}
-        (json, errcode) = V1API(post_packet).handle(id='lamp4',
+        (json, errcode) = V1API(post_packet).handle(ck='lamp4',
                                                     formdata=data)
         self.assertEqual(200, errcode)
         self.assertEqual("'lamp4' updated", json['message'])

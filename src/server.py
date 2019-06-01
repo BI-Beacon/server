@@ -44,7 +44,7 @@ def beacon_api(channelkey):
         def update_state(channelkey, tuple):
             state[channelkey] = tuple
         v1api_handler = V1API(update_state)
-        (json_obj, status) = v1api_handler.handle(id=channelkey, formdata=request.form)
+        (json_obj, status) = v1api_handler.handle(ck=channelkey, formdata=request.form)
         return json.dumps(json_obj), status
 
 

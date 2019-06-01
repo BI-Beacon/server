@@ -45,8 +45,8 @@ def parse_color(s):
     return tuple(result)
 
 
-def valid_id(id):
-    return ID_RE.match(id)
+def valid_ck(ck):
+    return ID_RE.match(ck)
 
 
 def error(msg):
@@ -64,10 +64,10 @@ class V1API(object):
     def __init__(self, post_packet):
         self.post_packet = post_packet
 
-    def handle(self, id, formdata):
+    def handle(self, ck, formdata):
 
-        if not valid_id(id):
-            return error("Invalid id")
+        if not valid_ck(ck):
+            return error("Invalid channel key")
 
         if COLOR not in formdata:
             return error("Expected color data")
@@ -92,6 +92,6 @@ class V1API(object):
 
         packet = tuple(list(color) + [hz]) if hz else color
 
-        self.post_packet(id, tuple(packet))
+        self.post_packet(ck, tuple(packet))
 
-        return success("'%s' updated" % id)
+        return success("'%s' updated" % ck)
