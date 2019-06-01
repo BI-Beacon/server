@@ -18,8 +18,5 @@ clean:
 	$(RM) -rf .pytest_cache
 	$(RM) .devenv
 
-run: env
-	( . env/bin/activate && python src/server.py 80 )
-
 test: .devenv
 	( . env/bin/activate && pytest tst )

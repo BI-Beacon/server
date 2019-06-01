@@ -5,8 +5,8 @@ BI-Beacon V1 state server
 
 This is the official BI-Beacon server.
 
-How to run?
------------
+How to run server?
+------------------
 
   1. Clone repo
   2. make env
