@@ -9,8 +9,7 @@ from approvaltests.combination_approvals import verify_all_combinations
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
 import requests
 
-import reuseaddr_hack
-from io import StringIO
+import tst.reuseaddr_hack
 
 
 def get_process_output_for_inputs(port, request_list):
