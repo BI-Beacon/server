@@ -1,15 +1,21 @@
-from pprint import pformat
-import random
-import subprocess
+# coding: utf-8
+
+
+# Standard
 import time
 import unittest
+import subprocess
+from pprint import pformat
 
+# Third-party
+import requests
 import approvaltests
 from approvaltests.combination_approvals import verify_all_combinations
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
-import requests
 
+# Local
 import tst.reuseaddr_hack
+
 
 
 def get_process_output_for_inputs(port, request_list):

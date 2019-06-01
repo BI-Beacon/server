@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import unittest
 from src.v1api import V1API, parse_color
 

@@ -1,13 +1,8 @@
 # coding: utf-8
+
 import re
 import logging
 
-# Extension system
-try:
-    from customize import before_post_packet
-except ImportError:
-    def before_post_packet(*_):
-        pass
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
@@ -97,8 +92,6 @@ class V1API(object):
 
         packet = tuple(list(color) + [hz]) if hz else color
 
-        log.debug("Posting packet %s to %s", packet, id)
-        before_post_packet(id, packet)
         self.post_packet(id, tuple(packet))
 
         return success("'%s' updated" % id)
