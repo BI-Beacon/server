@@ -1,6 +1,18 @@
 [
-[
+  [
     "meld",
     "meld"
-]
+  ],
+  [
+    "vimdiff",
+    "/usr/bin/vimdiff"
+  ],
+  [
+    "kdiff3",
+    "/usr/bin/kdiff3"
+  ],
+  [
+    "opendiff",
+    "opendiff"
+  ]
 ]
