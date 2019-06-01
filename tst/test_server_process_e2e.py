@@ -78,7 +78,7 @@ class TestServer(unittest.TestCase):
         import os
         print(os.getcwd())
         factory.load('tst/reporters.json')
-        self.reporter = factory.get('meld')
+        self.reporter = factory.get_first_working()
 
     def test_server_process(self):
         inputs = [

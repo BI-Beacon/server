@@ -15,7 +15,7 @@ Got:
                  '{"message": "\'test\' updated"}',
                  'color 255 0 255\n'],
   'returncode': -15,
-  'stdout': [ 'BI-Beacon version 0.1 starting.',
+  'stdout': [ 'BI-Beacon version 0.11 starting.',
               'Using port: 8989',
               ' * Serving Flask app "BI-Beacon Open Source '
               'Server" (lazy loading)',
