@@ -2,10 +2,11 @@
 
 
 # Standard
+from pprint import pformat
+import itertools
+import subprocess
 import time
 import unittest
-import subprocess
-from pprint import pformat
 
 # Third-party
 import requests
@@ -81,15 +82,28 @@ class TestServer(unittest.TestCase):
         self.reporter = factory.get_first_working()
 
     def test_server_process(self):
+        requests = [
+            ('GET', 'test'),
+            ('POST', 'test', {'color': '#ff00ff'}),
+            ('GET', 'test')
+        ]
+        reqs_perms = itertools.permutations(requests)
+ 
         inputs = [
             [None, 8989],
-            [
-                [
-                    ('GET', 'test'),
-                    ('POST', 'test', {'color': '#ff00ff'}),
-                    ('GET', 'test')
-                ]
-            ]
+            reqs_perms
+            # [
+            #     [
+            #         ('GET', 'test'),
+            #         ('POST', 'test', {'color': '#ff00ff'}),
+            #         ('GET', 'test')
+            #     ],
+            #     [
+            #         ('POST', 'test', {'color': '#ff00ff'}),
+            #         ('GET', 'test'),
+            #         ('GET', 'test')
+            #     ]
+            # ]
         ]
         verify_all_combinations(
             get_process_output_for_inputs,

@@ -1,6 +1,51 @@
 
 Given: (None,
- [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+ (('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')))
+Got:
+{ 'responses': [],
+  'returncode': 0,
+  'stdout': [ 'Usage: server.py <port>',
+              ' port: REST API requests will be available '
+              'at this port.']}
+
+Given: (None,
+ (('GET', 'test'), ('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'})))
+Got:
+{ 'responses': [],
+  'returncode': 0,
+  'stdout': [ 'Usage: server.py <port>',
+              ' port: REST API requests will be available '
+              'at this port.']}
+
+Given: (None,
+ (('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test'), ('GET', 'test')))
+Got:
+{ 'responses': [],
+  'returncode': 0,
+  'stdout': [ 'Usage: server.py <port>',
+              ' port: REST API requests will be available '
+              'at this port.']}
+
+Given: (None,
+ (('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test'), ('GET', 'test')))
+Got:
+{ 'responses': [],
+  'returncode': 0,
+  'stdout': [ 'Usage: server.py <port>',
+              ' port: REST API requests will be available '
+              'at this port.']}
+
+Given: (None,
+ (('GET', 'test'), ('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'})))
+Got:
+{ 'responses': [],
+  'returncode': 0,
+  'stdout': [ 'Usage: server.py <port>',
+              ' port: REST API requests will be available '
+              'at this port.']}
+
+Given: (None,
+ (('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')))
 Got:
 { 'responses': [],
   'returncode': 0,
@@ -9,7 +54,125 @@ Got:
               'at this port.']}
 
 Given: (8989,
- [('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')])
+ (('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')))
+Got:
+{ 'responses': [ 'color 0 255 0\n',
+                 '{"message": "\'test\' updated"}',
+                 'color 255 0 255\n'],
+  'returncode': -15,
+  'stdout': [ 'BI-Beacon version 0.11 starting.',
+              'Using port: 8989',
+              ' * Serving Flask app "BI-Beacon Open Source '
+              'Server" (lazy loading)',
+              ' * Environment: production',
+              '   WARNING: This is a development server. '
+              'Do not use it in a production deployment.',
+              '   Use a production WSGI server instead.',
+              ' * Debug mode: off',
+              ' * Running on http://0.0.0.0:8989/ (Press '
+              'CTRL+C to quit)',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 -',
+              '127.0.0.1 - - [] "POST /test HTTP/1.1" 200 '
+              '-',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 '
+              '-']}
+
+Given: (8989,
+ (('GET', 'test'), ('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'})))
+Got:
+{ 'responses': [ 'color 0 255 0\n',
+                 'color 0 255 0\n',
+                 '{"message": "\'test\' updated"}'],
+  'returncode': -15,
+  'stdout': [ 'BI-Beacon version 0.11 starting.',
+              'Using port: 8989',
+              ' * Serving Flask app "BI-Beacon Open Source '
+              'Server" (lazy loading)',
+              ' * Environment: production',
+              '   WARNING: This is a development server. '
+              'Do not use it in a production deployment.',
+              '   Use a production WSGI server instead.',
+              ' * Debug mode: off',
+              ' * Running on http://0.0.0.0:8989/ (Press '
+              'CTRL+C to quit)',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 -',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 -',
+              '127.0.0.1 - - [] "POST /test HTTP/1.1" 200 '
+              '-']}
+
+Given: (8989,
+ (('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test'), ('GET', 'test')))
+Got:
+{ 'responses': [ '{"message": "\'test\' updated"}',
+                 'color 255 0 255\n',
+                 'color 255 0 255\n'],
+  'returncode': -15,
+  'stdout': [ 'BI-Beacon version 0.11 starting.',
+              'Using port: 8989',
+              ' * Serving Flask app "BI-Beacon Open Source '
+              'Server" (lazy loading)',
+              ' * Environment: production',
+              '   WARNING: This is a development server. '
+              'Do not use it in a production deployment.',
+              '   Use a production WSGI server instead.',
+              ' * Debug mode: off',
+              ' * Running on http://0.0.0.0:8989/ (Press '
+              'CTRL+C to quit)',
+              '127.0.0.1 - - [] "POST /test HTTP/1.1" 200 '
+              '-',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 -',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 '
+              '-']}
+
+Given: (8989,
+ (('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test'), ('GET', 'test')))
+Got:
+{ 'responses': [ '{"message": "\'test\' updated"}',
+                 'color 255 0 255\n',
+                 'color 255 0 255\n'],
+  'returncode': -15,
+  'stdout': [ 'BI-Beacon version 0.11 starting.',
+              'Using port: 8989',
+              ' * Serving Flask app "BI-Beacon Open Source '
+              'Server" (lazy loading)',
+              ' * Environment: production',
+              '   WARNING: This is a development server. '
+              'Do not use it in a production deployment.',
+              '   Use a production WSGI server instead.',
+              ' * Debug mode: off',
+              ' * Running on http://0.0.0.0:8989/ (Press '
+              'CTRL+C to quit)',
+              '127.0.0.1 - - [] "POST /test HTTP/1.1" 200 '
+              '-',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 -',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 '
+              '-']}
+
+Given: (8989,
+ (('GET', 'test'), ('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'})))
+Got:
+{ 'responses': [ 'color 0 255 0\n',
+                 'color 0 255 0\n',
+                 '{"message": "\'test\' updated"}'],
+  'returncode': -15,
+  'stdout': [ 'BI-Beacon version 0.11 starting.',
+              'Using port: 8989',
+              ' * Serving Flask app "BI-Beacon Open Source '
+              'Server" (lazy loading)',
+              ' * Environment: production',
+              '   WARNING: This is a development server. '
+              'Do not use it in a production deployment.',
+              '   Use a production WSGI server instead.',
+              ' * Debug mode: off',
+              ' * Running on http://0.0.0.0:8989/ (Press '
+              'CTRL+C to quit)',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 -',
+              '127.0.0.1 - - [] "GET /test HTTP/1.1" 200 -',
+              '127.0.0.1 - - [] "POST /test HTTP/1.1" 200 '
+              '-']}
+
+Given: (8989,
+ (('GET', 'test'), ('POST', 'test', {'color': '#ff00ff'}), ('GET', 'test')))
 Got:
 { 'responses': [ 'color 0 255 0\n',
                  '{"message": "\'test\' updated"}',
